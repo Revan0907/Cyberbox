@@ -1,0 +1,75 @@
+html {margin:10px;
+padding:2px;
+border-width:5px;
+background-color:#efffef;}
+
+h1 {font-family:times-new-roman,arial;
+margin-top:40px;}
+
+.formname {text-align: center;
+border: 10px;
+border-width: 5px;
+font-family: fantasy;
+text-decoration: underline;}
+
+.navPanel {background-color:black;
+padding:1px;
+text-align:center;}
+
+.navPanel>a {display:inline-block;
+border:2px solid black;
+background-color:black;
+color:white;
+padding: 10px;}
+
+.navPanel>p {float: left;
+color: white;}
+
+#loginlink {float: right;}
+#cartlink {float: right;}
+
+a:hover {border-color:#C0C0C0;
+box-shadow: 0 0 10px white;}
+a:active {color:#32CD32;}
+
+.loginform {border: 10px;
+padding: 150px;
+border-width: 2px;
+border-style: ridge;
+display: inline-block;
+margin-left: 31%;
+margin-right: 10%;
+text-align: left;
+background-image: url(https://cdn.hipwallpaper.com/i/62/26/HKoPzd.jpg);
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: #CC99FF;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=button] {
+  background-color: #FF0000;
+  width: 48%;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  float: left;
+}

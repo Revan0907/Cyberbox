@@ -1,0 +1,14 @@
+{%extends "layout.html" %}
+{%block content%}
+  <h1 class="formname">Login Form</h1>
+  <form method="post" action="" class="loginform">
+    {{ form.csrf_token }}
+    <br> {{ form.email.label}} {{form.email}} <br> <br>
+    {{ form.password.label}} {{form.password}} <br> <br>
+      <input type="submit" value="Login">
+      <input type="button" onclick="location.href='{{url_for('register')}}';" value="Register">
+      {% if form.errors %}
+        <p>Your username and password are incorrect. Please try again.</p>
+      {% endif %}
+  </form>
+{%endblock content%}
