@@ -5,6 +5,7 @@ from website import db
 from flask import request, redirect, flash
 from website.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, current_user, login_required
+from werkzeug.utils import secure_filename
 
 @app.route("/")
 @app.route("/home")
@@ -26,10 +27,12 @@ def register():
         user = User(username=form.username.data, firstname=form.firstname.data, lastname=form.lastname.data, email=form.email.data, password=form.password.data)
         db.session.add(user)
         db.session.commit()
+        return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
 @app.route("/login", methods=['GET','POST'])
 def login():
+    error = None
     if current_user.is_anonymous == True:
         current_user.firstname = 'Guest'
     form = LoginForm()
@@ -39,7 +42,9 @@ def login():
             login_user(user)
             flash('Successfully logged in')
             return redirect(url_for('home'))
-    return render_template('login.html', title='Login', form=form)
+        else:
+           error = 'Invalid credentials'
+    return render_template('login.html', title='Login', form=form,error=error)
 
 @app.route("/logout")
 def logout():

@@ -1,4 +1,22 @@
 {%extends "layout.html" %}
 {%block content%}
-  <h1>Register</h1>
+  <h1 class="formname">Register</h1>
+  <p class="formname"><strong>Create an account today to buy items!</strong></p>
+  <form method="post" class="registerform" action="">
+    {{ form.csrf_token }}
+    <br> {{ form.firstname.label }} {{form.firstname}} <br> <br>
+    {{ form.lastname.label }} {{form.lastname}} <br> <br>
+    {{ form.username.label }} {{ form.username }} <br> <br>
+    {{ form.email.label}} {{form.email}} <br> <br>
+    {{ form.password.label}} {{form.password}} <br> <br>
+    {{ form.confirm_password.label}} {{form.confirm_password}} <br> <br>
+      <input type="submit" value="Register"> <br><br><br><br>
+    {% for error in form.errors %}
+      <span style="color: red;"> <br>
+        <ul>
+        <strong>Error - {{ error }} is Invalid</strong>
+      </ul> </span>
+    {% endfor %}
+  </form>
+
 {%endblock content%}
