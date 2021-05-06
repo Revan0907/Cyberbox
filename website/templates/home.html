@@ -1,4 +1,32 @@
 {%extends "layout.html" %}
 {%block content%}
-  <h1>Home page</h1>
+  {% for item in data %}
+    <div class="card">
+      {% if item.id % 3 == 1 %}
+      <div class="st-box">
+        <img src="/static/img/{{item.img_file}}" style="width:100%" height="300">
+        <h1>{{item.name}}</h1>
+        <p class="price">£{{item.price}}</p>
+        <p><button>Add to Cart</button></p>
+      </div>
+      {% endif %}
+      {% if item.id % 3 == 2 %}
+      <div class="nd-box">
+        <img src="/static/img/{{item.img_file}}" style="width:100%" height="300">
+        <h1>{{item.name}}</h1>
+        <p class="price">£{{item.price}}</p>
+        <p><button>Add to Cart</button></p>
+      </div>
+      {% endif %}
+      {% if item.id % 3 == 0 %}
+      <div class="rd-box">
+        <img src="/static/img/{{item.img_file}}" style="width:100%" height="300">
+        <h1>{{item.name}}</h1>
+        <p class="price">£{{item.price}}</p>
+        <p><button>Add to Cart</button></p>
+      </div>
+      {% endif %}
+    </div>
+
+  {% endfor %}
 {%endblock content%}

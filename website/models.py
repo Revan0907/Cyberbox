@@ -6,13 +6,14 @@ from flask_login import UserMixin, AnonymousUserMixin
 
 class Items(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    img = db.Column(db.Text, unique=True, nullable= False)
+    img_file = db.Column(db.Text, unique=True, nullable= False)
     name = db.Column(db.Text, nullable= False)
-    price = db.Column(db.Integer, nullable= False)
-    brand = db.Column(db.String(64), nullable=False)
-    descr=db.Column(db.String, nullable=False)
-    features=db.Column(db.String(60),nullable=False)
+    price = db.Column(db.Float, nullable= False)
+    brand = db.Column(db.Text, nullable=False)
+    descr=db.Column(db.Text, nullable=False)
 
+    def __repr__(self):
+        return f"Items('{self.img}','{self.name}','{self.price}')"
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)

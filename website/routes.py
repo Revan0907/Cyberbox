@@ -1,19 +1,18 @@
-from website.models import User, Anonymous
+from website.models import User, Anonymous, Items
 from flask import render_template, url_for, flash
 from website import app
 from website import db
 from flask import request, redirect, flash
 from website.forms import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, current_user, login_required
-from werkzeug.utils import secure_filename
 
 @app.route("/")
 @app.route("/home")
 def home():
-    #posts = Post.query.all()   Will be changed to items to be sold
+    data = Items.query.all()
     if current_user.is_anonymous == True:
         current_user.firstname = 'Guest'
-    return render_template('home.html')
+    return render_template('home.html', data=data)
 
 
 @app.route("/register", methods=['GET','POST'])

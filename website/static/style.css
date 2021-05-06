@@ -89,3 +89,46 @@ margin-right: 10%;
 text-align: left;
 background-image: url(https://st2.depositphotos.com/8197886/10987/v/600/depositphotos_109876190-stock-illustration-abstract-geometric-polygon.jpg);
 }
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: 80px;
+  text-align: center;
+  font-family: arial;
+  display: inline-block;
+}
+
+.price {
+  color: blue;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+
+.st-box {
+float: left;
+background-color: #FFCCCC;
+}
+.nd-box {
+float: left;
+background-color: #CCCCFF;
+}
+.rd-box {
+float: right;
+background-color: #CCFFCC;
+}
