@@ -1,6 +1,7 @@
 {%extends "layout.html" %}
 {%block content%}
-  {% for item in data %}
+  {% set sort_on = request.args.sort_on|default(default) %}
+  {% for item in data|sort(attribute=sort_on) %}
     <div class="card">
       {% if item.id % 3 == 1 %}
       <div class="st-box">
@@ -27,6 +28,5 @@
       </div>
       {% endif %}
     </div>
-
   {% endfor %}
 {%endblock content%}
