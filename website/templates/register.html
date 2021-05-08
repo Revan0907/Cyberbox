@@ -11,11 +11,10 @@
     {{ form.password.label}} {{form.password}} <br> <br>
     {{ form.confirm_password.label}} {{form.confirm_password}} <br> <br>
       <input type="submit" value="Register"> <br><br><br><br>
-    {% for error in form.errors %}
-      <span style="color: red;"> <br>
-        <ul>
-        <strong>Error - {{ error }} is Invalid</strong>
-      </ul> </span>
+    {% for field, errors in form.errors.items() %}
+      <small class="form-text-text-muted">
+          {{ ', '.join(errors) }} <br>
+      </small>
     {% endfor %}
   </form>
 

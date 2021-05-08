@@ -1,0 +1,24 @@
+{%extends "layout.html" %}
+{%block content%}
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="producthtml">
+<body class="productbody">
+    <div class="container">
+      <div class="prod_image">
+        <img class="prod_image" src="/static/img/{{data.img_file}}" />
+      </div>
+      <div class="product">
+        <p class="productp">{{data.brand}}</p>
+        <h1 class="producth1">{{data.name}}</h1>
+        <h2 class="producth2">£{{data.price}}</h2>
+        <p class="desc">{{data.descr}}</p>
+        <div class="buttons">
+          <button class="add">Add to Cart</button> <br><br>
+          <button class="wish">♥</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+{%endblock content%}

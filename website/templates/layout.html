@@ -17,11 +17,11 @@
     {% endif %}
     {% if request.path =="/home" or request.path == "/" %}
     <div class="dropdown">
-      <span>Sort by</span>
+      <span>Sort products by</span>
       <div class="dropdown-content">
         <form method="post" action="/home">
-        <button id="pricesort" class="dropdown-content" type="sumbit" name="sort_by" value="price">Price</button>
-        <button id="namesort" class="dropdown-content" type="sumbit" name="sort_by" value="name">Alphabetical</button>
+          <button id="pricesort" class="dropdown-content" type="sumbit" name="sort_by" value="price">Price</button>
+          <button id="namesort" class="dropdown-content" type="sumbit" name="sort_by" value="name">Alphabetical order</button>
         </form>
       </div>
     </div>

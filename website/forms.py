@@ -4,9 +4,9 @@ from wtforms.validators import DataRequired, Length, Email,EqualTo,ValidationErr
 from website.models import User
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(),Length(min=3,max=15)])
-    firstname = StringField('First name', validators=[DataRequired(), Regexp('^[a-zA-Z]+$')])
-    lastname = StringField('Last name', validators=[DataRequired(), Regexp('^[a-zA-Z]+$')])
+    username = StringField('Username', validators=[DataRequired(), Regexp('^.{3,15}$', message='Username must be 3 to 15 characters long')])
+    firstname = StringField('First name', validators=[DataRequired(), Regexp('^[a-zA-Z]+$', message='First name must only be english letters')])
+    lastname = StringField('Last name', validators=[DataRequired(), Regexp('^[a-zA-Z]+$', message='Last name must only be english letters')])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired(), Regexp('^.{6,8}$', message='Password must be between 6 to 8 characters')])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])

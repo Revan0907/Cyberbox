@@ -16,6 +16,12 @@ def home():
     sort_by = request.form.get('sort_by', default)
     return render_template('home.html', data=data, default=sort_by)
 
+@app.route("/product<int:item_id>", methods=['GET'])
+def product(item_id):
+    if current_user.is_anonymous == True:
+        current_user.firstname = 'Guest'
+    data = Items.query.get(item_id)
+    return render_template('product.html', data=data)
 
 @app.route("/register", methods=['GET','POST'])
 def register():
