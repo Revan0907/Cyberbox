@@ -1,7 +1,7 @@
-html {margin:10px;
-padding:2px;
+html {margin:5px;
+padding:1px;
 border-width:5px;
-background-color:#efffef;}
+background-color:#C2F2FF;}
 
 h1 {font-family:times-new-roman,arial;
 margin-top:40px;}
@@ -9,6 +9,16 @@ margin-top:40px;}
 hr.dotted {
   border-top: 1px dashed black;
 }
+
+.banner {display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;
+height: 150px;}
+
+.bannerdiv {background-image: url(/static/img/home-background.jpg);
+display: block;
+border-bottom: 3px;}
 
 #content {margin-left: 90px;
 }
@@ -22,6 +32,7 @@ hr.dotted {
   padding: 10px;
   float: center;
   cursor: pointer;
+  text-align: center;
 }
 
 .dropdown-content button {
@@ -59,6 +70,7 @@ text-align:center;}
 .navPanel>a {display:inline-block;
 border:2px solid black;
 background-color:black;
+margin-top: 10px;
 color:white;
 padding: 10px;}
 
@@ -81,7 +93,7 @@ display: inline-block;
 margin-left: 30%;
 margin-right: 10%;
 text-align: left;
-background-image: url(https://cdn.hipwallpaper.com/i/62/26/HKoPzd.jpg);
+background-image: url(/static/img/login-background.jpg);
 }
 
 input[type=text], input[type=password] {
@@ -133,13 +145,14 @@ display: inline-block;
 margin-left: 29%;
 margin-right: 10%;
 text-align: left;
-background-image: url(https://st2.depositphotos.com/8197886/10987/v/600/depositphotos_109876190-stock-illustration-abstract-geometric-polygon.jpg);
+background-image: url(/static/img/register-background.jpg);
 }
 
 .form-text-text-muted {color: red;
 font-size: 16px;
 font-weight: bold;
-display: block;}
+display: block;
+font-family: sans-serif,monospace, Courier;}
 
 .card {
   box-shadow: 5px 5px 15px rgba(0,0,0,.5);
@@ -198,6 +211,7 @@ min-height: 100%;
 .container {position: relative;
 margin: auto;
 margin-top: 80px;
+margin-bottom: 130px;
 overflow: hidden;
 width: 520px;
 height: absolute;
