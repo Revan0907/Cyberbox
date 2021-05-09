@@ -1,7 +1,6 @@
 {%extends "layout.html" %}
 {%block content%}
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en" dir="ltr" class="producthtml">
 <body class="productbody">
     <div class="container">
@@ -13,10 +12,14 @@
         <h1 class="producth1">{{data.name}}</h1>
         <h2 class="producth2">£{{data.price}}</h2>
         <p class="desc">{{data.descr}}</p>
+        {% if current_user.is_authenticated %}
         <div class="buttons">
-          <button class="add">Add to Cart</button> <br><br>
+          <a href="/add_to_cart/{{data.id}}"><button class="add">Add to Cart</button></a> <br><br>
           <button class="wish">♥</button>
         </div>
+        {% else %}
+          <a href="{{url_for('login')}}"><button class="add">Login to buy items</button></a>
+        {% endif %}
       </div>
     </div>
   </body>

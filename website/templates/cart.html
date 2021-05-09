@@ -1,4 +1,25 @@
 {%extends "layout.html" %}
 {%block content%}
-  <h1>Cart</h1>
+<table class="cart-table" id="table_cart">
+  <h2 class="producth2" style="text-align:center; margin-top:30px;" >Shopping Cart</h2>
+    <tr>
+      <th>Item Name</th>
+      <th>Price</th>
+      <th>Total</th>
+    </tr>
+
+    {% for key, value in display_cart.items() %}
+    <tr>
+      <td>{{value["name"]}}</td>
+      <td>£{{ "%.2f" % value["price"]}}</td>
+      <td>{{value["id"]}}</td>
+      <td><a href="/del_from_cart/{{value["id"]}}"><button class="add">Delete</button></a></td>
+    </tr>
+    {% endfor %}
+
+</table> <br><br><br>
+<p class="total_price">Total: £{{ "%.2f" % total }}</p>
+{% if total != 0 %}
+  <a href="/checkout"><button class="checkout_button" type="submit" name="check_out" value="checkout">Check Out</button></a>
+{% endif %}
 {%endblock content%}
