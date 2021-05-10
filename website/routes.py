@@ -36,7 +36,7 @@ def product(item_id):
 def cart():
     if current_user.is_anonymous == True:
         return render_template('403.html'), 403
-    if "cart" not in session:
+    if "cart" not in session or not session["cart"]:
         flash("Cart is empty")
         return render_template('cart.html', display_cart = {}, total = 0)
     else:
@@ -64,6 +64,13 @@ def add_to_cart(id):
 
 @app.route("/del_from_cart/<int:id>")
 def del_from_cart(id):
+    session["cart"].remove(id)
+
+    flash("Successfully removed from cart!")
+    return redirect("/cart")
+
+@app.route("/del_fully_from_cart/<int:id>")
+def del_fully_from_cart(id):
     if "cart" not in session:
         session["cart"] = []
 

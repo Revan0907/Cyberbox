@@ -322,13 +322,16 @@ display: block;
 margin-right: 46%;}
 
 .checkout_button:hover {
-transform: scale(.95)}
+transform: scale(1.15)}
 
 .del {background-color: red;
 color: white;
 padding: 3px;
 border-radius: 10px;}
+.del:hover {cursor: pointer;}
+
 .plus {background-color: green;
 color: white;
 padding: 2px;
 border-radius: 10px;}
+.plus:hover {cursor: pointer;}
