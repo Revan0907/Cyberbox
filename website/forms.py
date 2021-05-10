@@ -27,3 +27,10 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
 
+class PaymentForm(FlaskForm):
+    address = StringField('Shipping Adress', validators=[DataRequired(), Regexp('^.{1,200}$', message='Shipping Address must be below 200 characters.')])
+    cardnum = StringField('Card Number', validators=[DataRequired(), Regexp('^[0-9]{16}$', message='Card number must be 16 digits only')])
+    expmonth = StringField('Expiration month', validators=[DataRequired(), Regexp('^(1[0-2]|[1-9]|0[1-9])$', message='Card expiration month must be a number between 1-12')])
+    expyear = StringField('Expiration year', validators=[DataRequired(), Regexp('^(202[1-9]|20[3-5][0-9])$', message='Year must be a 4 digit number between 2021-2059')])
+    cvv = StringField('CVV', validators=[DataRequired(), Regexp('^[0-9]{3}$', message='CVV must be 3 digit number')])
+    submit = SubmitField('Pay')

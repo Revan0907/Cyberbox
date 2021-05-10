@@ -15,6 +15,11 @@ class Items(db.Model):
     def __repr__(self):
         return f"Items('{self.img}','{self.name}','{self.price}')"
 
+class Orders(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.Text, nullable= False)
+    address = db.Column(db.String(200), nullable= False)
+    shipment = db.Column(db.Text, nullable=False)
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)

@@ -1,10 +1,11 @@
-from website.models import User, Anonymous, Items
+from website.models import User, Anonymous, Items, Orders
 from flask import render_template, url_for, session
 from website import app
 from website import db
 from flask import request, redirect, flash, request
-from website.forms import RegistrationForm, LoginForm
+from website.forms import RegistrationForm, LoginForm, PaymentForm
 from flask_login import login_user, logout_user, current_user, login_required
+import time
 
 @app.route('/set/')
 def set():
@@ -36,10 +37,20 @@ def product(item_id):
 def cart():
     if current_user.is_anonymous == True:
         return render_template('403.html'), 403
-    if "cart" not in session or not session["cart"]:
+
+    if  not session["cart"] and not session["wish"]:
         flash("Cart is empty")
-        return render_template('cart.html', display_cart = {}, total = 0)
-    else:
+        return render_template('cart.html', display_cart = {}, total = 0, display_wish= {})
+    
+    elif session["wish"] and not session["cart"]:
+        wishes = session["wish"]
+        dict_of_wishes = {}
+        for item in wishes:
+            product = Items.query.get(item)
+            dict_of_wishes[product.id] = {"id":product.id, "name": product.name, "price": product.price}
+        return render_template('cart.html', display_cart = {}, total = 0, display_wish= dict_of_wishes)
+
+    elif session["cart"] and not session["wish"]:
         items = session["cart"]
         dict_of_items = {}
         total_price = 0
@@ -50,12 +61,34 @@ def cart():
                 dict_of_items[product.id]["qty"] +=1
             else:
                 dict_of_items[product.id] = {"id":product.id, "name": product.name, "price": product.price, "qty":1}
-        return render_template('cart.html', display_cart = dict_of_items, total = total_price)
+        return render_template('cart.html', display_cart = dict_of_items, total = total_price, display_wish= {})
+        
+    else:
+        items = session["cart"]
+        wishes = session["wish"]
+        dict_of_wishes = {}
+        dict_of_items = {}
+        total_price = 0
+                
+        for item in items:
+            product = Items.query.get(item)
+            total_price += product.price
+            if product.id in dict_of_items:
+                dict_of_items[product.id]["qty"] +=1
+            else:
+                dict_of_items[product.id] = {"id":product.id, "name": product.name, "price": product.price, "qty":1}
+
+        for item in wishes:
+            product = Items.query.get(item)
+            dict_of_wishes[product.id] = {"id":product.id, "name": product.name, "price": product.price}
+        return render_template('cart.html', display_cart = dict_of_items, total = total_price, display_wish=dict_of_wishes)
 
 @app.route("/add_to_cart/<int:id>")
 def add_to_cart(id):
     if "cart" not in session:
         session["cart"] = []
+    if "wish" not in session:
+        session["wish"] = []
     
     session["cart"].append(id)
 
@@ -64,6 +97,11 @@ def add_to_cart(id):
 
 @app.route("/del_from_cart/<int:id>")
 def del_from_cart(id):
+    if "cart" not in session:
+        session["cart"] = []
+    if "wish" not in session:
+        session["wish"] = []
+        
     session["cart"].remove(id)
 
     flash("Successfully removed from cart!")
@@ -73,6 +111,8 @@ def del_from_cart(id):
 def del_fully_from_cart(id):
     if "cart" not in session:
         session["cart"] = []
+    if "wish" not in session:
+        session["wish"] = []
 
     num = session["cart"].count(id)
     for i in range(num):  
@@ -80,6 +120,49 @@ def del_fully_from_cart(id):
 
     flash("Successfully removed from cart!")
     return redirect("/cart")
+
+@app.route("/add_to_wish/<int:id>")
+def add_to_wish(id):
+    if "wish" not in session:
+        session["wish"] = []
+    if "cart" not in session:
+        session["cart"] = []
+    
+    session["wish"].append(id)
+
+    flash("Successfully added to wishlist!")
+    return redirect("/cart")
+
+@app.route("/add_to_cart_from_wish/<int:id>")
+def add_to_cart_from_wish(id):
+    if "wish" not in session:
+        session["wish"] = []
+    if "cart" not in session:
+        session["cart"] = []
+
+    session["cart"].append(id)
+    session["wish"].remove(id)
+
+    flash("Successfully added to cart!")
+    return redirect("/cart")
+
+@app.route("/checkout", methods=['GET','POST'])
+def checkout():
+    if current_user.is_anonymous == True:
+        return render_template('403.html'), 403
+    form = PaymentForm()
+    if form.validate_on_submit():
+        cart = session.get("cart")
+        string_ints = [str(int) for int in cart]
+        newcart = (" ".join(string_ints))
+        order = Orders(username = session.get("username"), address= form.address.data, shipment=newcart)
+        db.session.add(order)
+        db.session.commit()
+        flash("Payment Successful! We'll get in touch shortly about your expected arrival date")
+        session["cart"] = []
+        time.sleep(3)
+        return redirect("/home")
+    return render_template('payment.html', form=form)
 
 @app.route("/register", methods=['GET','POST'])
 def register():
@@ -106,7 +189,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.verify_password(form.password.data):
             login_user(user)
-            session['username'] = User.query.get('username')
+            session["username"] = user.username
             return redirect(url_for('home'))
         else:
            error = 'Invalid credentials'

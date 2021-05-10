@@ -15,7 +15,7 @@
         {% if current_user.is_authenticated %}
         <div class="buttons">
           <a href="/add_to_cart/{{data.id}}"><button class="add">Add to Cart</button></a> <br><br>
-          <button class="wish">♥</button>
+          <a href="/add_to_wish/{{data.id}}"><button class="wish">♥</button></a>
         </div>
         {% else %}
           <a href="{{url_for('login')}}"><button class="add">Login to buy items</button></a>

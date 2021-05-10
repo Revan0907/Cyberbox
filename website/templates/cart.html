@@ -1,7 +1,7 @@
 {%extends "layout.html" %}
 {%block content%}
 <table class="cart-table" id="table_cart">
-  <h2 class="producth2" style="text-align:center; margin-top:30px;" >Shopping Cart</h2>
+  <h2 class="producth2" style="text-align:center; margin-top:30px;">Shopping Cart</h2>
     <tr>
       <th>Item Name</th>
       <th>Price</th>
@@ -22,4 +22,22 @@
 {% if total != 0 %}
   <a href="/checkout"><button class="checkout_button" type="submit" name="check_out" value="checkout">Check Out</button></a>
 {% endif %}
+
+<table class="wish-table" id="wishlist">
+  <br><br><br><br><h2 class="producth2" style="text-align:center; margin-top:30px;">Wishlist</h2>
+  <tr>
+    <th style="background-color:#00FF99">Item Name</th>
+    <th style="background-color:#00FF99">Price</th>
+  </tr>
+
+  {% for key, value in display_wish.items() %}
+  <tr>
+    <td>{{value["name"]}}</td>
+    <td>£{{ "%.2f" % value["price"]}}</td>
+    <td style="width:130px"><a href="/add_to_cart_from_wish/{{value["id"]}}"><button class="add">Add to Cart</button></a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+
 {%endblock content%}

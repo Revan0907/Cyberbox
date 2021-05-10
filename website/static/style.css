@@ -301,6 +301,19 @@ margin-left: 20%;
 position:relative;
 empty-cells: show;}
 
+.wish-table {border-spacing: 1;
+border-collapse: collapse;
+background:#FFCCFF;
+border-radius:6px;
+overflow:hidden;
+max-width:800px;
+width:100%;
+margin:0 auto;
+margin-top: 40px;
+margin-left: 20%;
+position:relative;
+empty-cells: show;}
+
 td,th { padding-left:8px}
 th { background-color: yellow;}
 

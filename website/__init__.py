@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
 app = Flask(__name__)
-app.secret_key = '6fff3d56b180be5fb38c37347cffcc0e66a0880f114c00ea'
 
 app.debug = True
 app.config['SECRET_KEY'] = '6fff3d56b180be5fb38c37347cffcc0e66a0880f114c00ea' 
