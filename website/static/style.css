@@ -220,12 +220,16 @@ min-height: 100%;
 margin: auto;
 margin-top: 80px;
 margin-bottom: 130px;
-overflow: hidden;
+overflow: auto;
+scrollbar-width:none;
 width: 520px;
 height: absolute;
 background-color: white;
 box-shadow: 5px 5px 15px rgba(0,0,0,.5);
 border-radius: 10px;}
+.container::-webkit-scrollbar {
+  display: none;
+}
 
 .productp {font-size: 0.9em;
 letter-spacing: 1px;}
@@ -319,3 +323,12 @@ margin-right: 46%;}
 
 .checkout_button:hover {
 transform: scale(.95)}
+
+.del {background-color: red;
+color: white;
+padding: 3px;
+border-radius: 10px;}
+.plus {background-color: green;
+color: white;
+padding: 2px;
+border-radius: 10px;}

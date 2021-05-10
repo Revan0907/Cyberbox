@@ -46,7 +46,10 @@ def cart():
         for item in items:
             product = Items.query.get(item)
             total_price += product.price
-            dict_of_items[product.id] = {"id":product.id, "name": product.name, "price": product.price}
+            if product.id in dict_of_items:
+                dict_of_items[product.id]["qty"] +=1
+            else:
+                dict_of_items[product.id] = {"id":product.id, "name": product.name, "price": product.price, "qty":1}
         return render_template('cart.html', display_cart = dict_of_items, total = total_price)
 
 @app.route("/add_to_cart/<int:id>")
@@ -63,8 +66,10 @@ def add_to_cart(id):
 def del_from_cart(id):
     if "cart" not in session:
         session["cart"] = []
-        
-    session["cart"].remove(id)
+
+    num = session["cart"].count(id)
+    for i in range(num):  
+        session["cart"].remove(id)
 
     flash("Successfully removed from cart!")
     return redirect("/cart")
