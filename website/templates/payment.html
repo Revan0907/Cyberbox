@@ -7,11 +7,13 @@
   </head>
   <body>
     <div class="container">
-      <h2 class="producth2" style="text-decoration:underline">Payment details</h2>
+      <h2 class="producth2" style="text-decoration:underline">Shipping details</h2>
       <form method="post">
         {{ form.csrf_token }}
         <br> {{ form.address.label }} - Full shipping address. Max 200 characters <br> <br>{{form.address}}
+        <h2 class="producth2" style="text-decoration:underline">Payment details</h2>
         <br> {{ form.cardnum.label }} - 16 digit number on card. No hyphens or spaces allowed. <br> <br>{{form.cardnum}}
+        <br> {{ form.cardname.label }} - Name on card. Must be english letters <br> <br>{{form.cardname}}
         <br> {{ form.expmonth.label }} - 2 digit number. First digit can be 0. Must be more than 0 and can't exceed 12 <br> <br>{{form.expmonth}}
         <br> {{ form.expyear.label }} - 4 digit number. Must be greater than 2020 and less than 2060. <br><br>{{form.expyear}}
         <br> {{ form.cvv.label }} - 3 digit number only at back of card. <br><br> {{form.cvv}} <br>
