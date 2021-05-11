@@ -38,11 +38,11 @@ def cart():
     if current_user.is_anonymous == True:
         return render_template('403.html'), 403
 
-    if  not session["cart"] and not session["wish"]:
+    if  not session["cart"] and not session["wish"]:    #F&F
         flash("Cart is empty")
         return render_template('cart.html', display_cart = {}, total = 0, display_wish= {})
     
-    elif session["wish"] and not session["cart"]:
+    elif session["wish"] and not session["cart"]:       #F&T
         wishes = session["wish"]
         dict_of_wishes = {}
         for item in wishes:
@@ -50,7 +50,7 @@ def cart():
             dict_of_wishes[product.id] = {"id":product.id, "name": product.name, "price": product.price}
         return render_template('cart.html', display_cart = {}, total = 0, display_wish= dict_of_wishes)
 
-    elif session["cart"] and not session["wish"]:
+    elif session["cart"] and not session["wish"]:       #T&F
         items = session["cart"]
         dict_of_items = {}
         total_price = 0
@@ -63,7 +63,7 @@ def cart():
                 dict_of_items[product.id] = {"id":product.id, "name": product.name, "price": product.price, "qty":1}
         return render_template('cart.html', display_cart = dict_of_items, total = total_price, display_wish= {})
         
-    else:
+    else:                                                                           #T&T
         items = session["cart"]
         wishes = session["wish"]
         dict_of_wishes = {}
@@ -141,7 +141,9 @@ def add_to_cart_from_wish(id):
         session["cart"] = []
 
     session["cart"].append(id)
-    session["wish"].remove(id)
+    num = session["wish"].count(id)
+    for i in range(num):  
+        session["wish"].remove(id)
 
     flash("Successfully added to cart!")
     return redirect("/cart")

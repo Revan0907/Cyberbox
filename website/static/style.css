@@ -205,6 +205,9 @@ float: right;
 background-color: #CCFFCC;
 }
 
+.none:hover {border-color:#D18FC2;
+box-shadow: 0 0 0px white;}
+
 .producthtml {display: grid;
 min-height: 100%;
 background: purple;
@@ -277,6 +280,18 @@ font-family: sans-serif,fantasy;
 cursor: pointer;}
 .add:hover {background: pink;
 transition: all .4s ease-in-out;}
+
+.remove {width: 100%;
+height: 30px;
+background-color: #D18FC2;
+border: none;
+color: white;
+text-decoration: none;
+font-family: sans-serif,fantasy;
+cursor: pointer;}
+.remove:hover {background: red;
+transition: all .4s ease-in-out;}
+
 
 .wish {width: 100%;
   height: 30px;

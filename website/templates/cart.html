@@ -6,14 +6,16 @@
       <th>Item Name</th>
       <th>Price</th>
       <th>Quantity</th>
+      <th>Total Price</th>
     </tr>
 
     {% for key, value in display_cart.items() %}
     <tr>
       <td>{{value["name"]}}</td>
-      <td>£{{ "%.2f" % value["price"]}}</td>
-      <td><a href="/del_from_cart/{{value["id"]}}"><button class="del">-</button></a>    {{value["qty"]}}    <a href="/add_to_cart/{{value["id"]}}"><button class="plus">+</button></a></td>
-      <td style="width:130px"><a href="/del_fully_from_cart/{{value["id"]}}"><button class="add">Delete</button></a></td>
+      <td style="text-align:right">£{{ "%.2f" % value["price"]}}</td>
+      <td style="text-align:center"><a href="/del_from_cart/{{value["id"]}}"><button class="del">-</button></a>    {{value["qty"]}}    <a href="/add_to_cart/{{value["id"]}}"><button class="plus">+</button></a></td>
+      <td style="text-align:right">£{{"%.2f" % (value["qty"] * value["price"])}}</td>
+      <td style="width:130px"><a href="/del_fully_from_cart/{{value["id"]}}"><button class="remove">Delete</button></a></td>
     </tr>
     {% endfor %}
 
@@ -32,7 +34,7 @@
 
   {% for key, value in display_wish.items() %}
   <tr>
-    <td>{{value["name"]}}</td>
+    <td><a href="{{url_for('product', item_id=value.id)}}" class="none">{{value["name"]}}</a></td>
     <td>£{{ "%.2f" % value["price"]}}</td>
     <td style="width:130px"><a href="/add_to_cart_from_wish/{{value["id"]}}"><button class="add">Add to Cart</button></a></td>
   </tr>
