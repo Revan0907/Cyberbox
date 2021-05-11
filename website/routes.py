@@ -190,6 +190,8 @@ def login():
         if user is not None and user.verify_password(form.password.data):
             login_user(user)
             session["username"] = user.username
+            session["cart"] = []
+            session["wish"] = []
             return redirect(url_for('home'))
         else:
            error = 'Invalid credentials'
