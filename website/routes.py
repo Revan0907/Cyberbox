@@ -150,7 +150,7 @@ def add_to_cart_from_wish(id):
 
 @app.route("/checkout", methods=['GET','POST'])
 def checkout():
-    if current_user.is_anonymous == True:
+    if current_user.is_anonymous == True or session["cart"] == []:
         return render_template('403.html'), 403
     form = PaymentForm()
     if form.validate_on_submit():

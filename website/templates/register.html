@@ -6,9 +6,9 @@
     {{ form.csrf_token }}
     <br> {{ form.firstname.label }} {{form.firstname}} <br> <br>
     {{ form.lastname.label }} {{form.lastname}} <br> <br>
-    {{ form.username.label }} {{ form.username }} <br> <br>
+    {{ form.username.label }} {{ form.username(placeholder="Username must be 3 to 15 characters long") }} <br> <br>
     {{ form.email.label}} {{form.email}} <br> <br>
-    {{ form.password.label}} {{form.password}} <br> <br>
+    {{ form.password.label}} {{form.password(placeholder="Password must be between 6 to 8 characters")}} <br> <br>
     {{ form.confirm_password.label}} {{form.confirm_password}} <br> <br>
       <input type="submit" value="Register"> <br><br><br><br>
     {% for field, errors in form.errors.items() %}
