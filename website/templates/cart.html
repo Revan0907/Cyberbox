@@ -36,7 +36,8 @@
   <tr>
     <td><a href="{{url_for('product', item_id=value.id)}}" class="none">{{value["name"]}}</a></td>
     <td>£{{ "%.2f" % value["price"]}}</td>
-    <td style="width:130px"><a href="/add_to_cart_from_wish/{{value["id"]}}"><button class="add">Add to Cart</button></a></td>
+    <td style="width:130px"><a href="/del_from_wish/{{value["id"]}}"><button class="remove">Remove</button></a></td>
+    <td style="width:130px"><a href="/add_to_cart_from_wish/{{value["id"]}}"><button class="addspec">Add to Cart</button></a></td>
   </tr>
   {% endfor %}
 </table>

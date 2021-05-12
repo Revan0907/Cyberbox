@@ -133,6 +133,20 @@ def add_to_wish(id):
     flash("Successfully added to wishlist!")
     return redirect("/cart")
 
+@app.route("/del_from_wish/<int:id>")
+def del_from_wish(id):
+    if "wish" not in session:
+        session["wish"] = []
+    if "cart" not in session:
+        session["cart"] = []
+    
+    num = session["wish"].count(id)
+    for i in range(num):  
+        session["wish"].remove(id)
+
+    flash("Successfully removed from wishlist!")
+    return redirect("/cart")
+
 @app.route("/add_to_cart_from_wish/<int:id>")
 def add_to_cart_from_wish(id):
     if "wish" not in session:
