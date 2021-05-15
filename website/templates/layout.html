@@ -10,10 +10,10 @@
       <img src="/static/img/Banner.jpg" height=50 width=400 class="banner">
     </div>
     <div class="navPanel">
-    <a id="homelink" href="{{url_for('home')}}">Shop</a>&nbsp
+    <a id="homelink" href="{{url_for('home')}}">Shop</a>
     <p>Hi, {{ current_user.firstname  }}!</p>
     {% if current_user.is_authenticated %}
-      <a id="cartlink" href="{{url_for('cart')}}">Cart</a>
+      <a id="cartlink" href="{{url_for('cart')}}">Cart 🛒</a>
       <a id="loginlink" href="{{url_for('logout')}}">Logout</a>
     {% else %}
       <a id="loginlink" href="{{url_for('login')}}">Login</a>
