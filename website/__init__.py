@@ -5,7 +5,7 @@ from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '6fff3d56b180be5fb38c37347cffcc0e66a0880f114c00ea' 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://c2053192:BF4V2ZiBun3U2Ta@csmysql.cs.cf.ac.uk:3306/c2053192_database1'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://sql8513463:sPcSIaAsdk@sql8.freemysqlhosting.net:3306/sql8513463'
 
 login_manager = LoginManager()
 login_manager.init_app(app)
